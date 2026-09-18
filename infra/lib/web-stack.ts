@@ -58,7 +58,7 @@ export class WebAppStack extends cdk.Stack {
         });
 
         new s3deploy.BucketDeployment(this, 'DeployWebsite', {
-            sources: [s3deploy.Source.asset(path.join(__dirname, '../../dist'))],
+            sources: [s3deploy.Source.asset(path.join(__dirname, '../../.output/public'))], // <--- ESTE ES EL CAMBIO
             destinationBucket: siteBucket,
             distribution,
             distributionPaths: ['/*'],
