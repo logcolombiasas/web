@@ -21,11 +21,11 @@ export class WebAppStack extends cdk.Stack {
             autoDeleteObjects: true,
         });
 
-        // 2. DNS y Certificado SSL
+        // 2. Consulta de Hosted Zone existente en Route 53 + Certificado SSL automático
         const zone = route53.HostedZone.fromLookup(this, 'Zone', { domainName });
         const certificate = new acm.Certificate(this, 'SiteCertificate', {
-            domainName,
-            validation: acm.CertificateValidation.fromHostedZone(zone),
+        domainName,
+        validation: acm.CertificateValidation.fromDns(zone), // Correcto: fromDns
         });
 
         // 3. Distribución CloudFront
