@@ -1,4 +1,4 @@
-import * as path from 'path'; // Importa el módulo path
+import * as path from 'path';
 import * as cdk from 'aws-cdk-lib';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
@@ -57,7 +57,6 @@ export class WebAppStack extends cdk.Stack {
             zone,
         });
 
-        // Apunta exactamente a la carpeta dist/ en la raíz del proyecto
         new s3deploy.BucketDeployment(this, 'DeployWebsite', {
             sources: [s3deploy.Source.asset(path.join(__dirname, '../../dist'))],
             destinationBucket: siteBucket,
