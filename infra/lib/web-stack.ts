@@ -18,7 +18,7 @@ export class WebAppStack extends cdk.Stack {
 
         const distribution = new cloudfront.Distribution(this, 'SiteDistribution', {
             defaultBehavior: {
-                origin: origins.S3BucketOrigin.withOriginAccessControl(websiteBucket),
+                origin: origins.S3BucketOrigin.withOriginAccessControl(siteBucket),
             },
             defaultRootObject: 'index.html',
             errorResponses: [
