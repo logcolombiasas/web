@@ -38,8 +38,8 @@ export class WebAppStack extends cdk.Stack {
         new s3deploy.BucketDeployment(this, 'DeployWebsite', {
             sources: [s3deploy.Source.asset(path.join(__dirname, '../../.output/public'))],
             destinationBucket: siteBucket,
-            distribution,
-            distributionPaths: ['/*'],
+            distribution, // <--- Vincula la distribución
+            distributionPaths: ['/*'], // <--- Invalida la caché automáticamente
         });
 
         // Imprime la URL autogenerada de CloudFront al finalizar el deploy

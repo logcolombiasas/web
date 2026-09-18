@@ -32,15 +32,13 @@ jobs:
       - name: Build React App
         run: pnpm build
 
-      # 🔍 PASO DE DEPURACIÓN: Veamos qué carpetas existen realmente
+      # 🔍 PASO DE DEPURACIÓN: Verificar los archivos generados por Nitro / TanStack
       - name: Debug Output Directory
         run: |
           echo "=== Directorio actual ==="
           pwd
-          echo "=== Contenido de la raíz ==="
-          ls -la
-          echo "=== Contenido de dist (si existe) ==="
-          ls -la dist/ || echo "🚨 LA CARPETA DIST NO SE CREÓ 🚨"
+          echo "=== Contenido de .output/public ==="
+          ls -la .output/public/ || echo "🚨 LA CARPETA .output/public NO SE CREÓ 🚨"
 
       - name: Deploy Infrastructure and Assets (CDK)
         run: |
