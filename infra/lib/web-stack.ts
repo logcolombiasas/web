@@ -17,23 +17,20 @@ export class WebAppStack extends cdk.Stack {
         });
 
         const distribution = new cloudfront.Distribution(this, 'SiteDistribution', {
-            defaultRootObject: 'index.html',
             defaultBehavior: {
-                origin: origins.S3BucketOrigin.withOriginAccessControl(siteBucket),
-                viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+                origin: origins.S3BucketOrigin.withOriginAccessControl(websiteBucket),
             },
+            defaultRootObject: 'index.html',
             errorResponses: [
                 {
                     httpStatus: 403,
                     responseHttpStatus: 200,
                     responsePagePath: '/index.html',
-                    ttl: cdk.Duration.seconds(0),
                 },
                 {
                     httpStatus: 404,
                     responseHttpStatus: 200,
                     responsePagePath: '/index.html',
-                    ttl: cdk.Duration.seconds(0),
                 },
             ],
         });
